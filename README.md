@@ -8,7 +8,5 @@ It is still ongoing.
 
 First, function over appearance:
 
-- Create a way to add skills
-- Remove skills
-- Click a button to increase proficiency
 - When enough experience is collected, skill's level will increase
+- Create a proficiency system that calculates each click as experience, has internal experience rules and logic for each skill and levels up the skill when it is met.
