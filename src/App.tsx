@@ -26,9 +26,11 @@ function App() {
     return savedData ? JSON.parse(savedData) : defaultStatus;
   });
 
-  const increaseProfiency = (skillName: string, skillLevel: number) => {
+  const increaseProficiency = (skillName: string, skillLevel: number) => {
     const savedDataRaw = localStorage.getItem(storageKey);
-    const currentStatus = savedDataRaw ? JSON.parse(savedDataRaw) : {};
+    const currentStatus: UserStatus = savedDataRaw
+      ? JSON.parse(savedDataRaw)
+      : {};
 
     const updatedProfile: UserStatus = {
       ...currentStatus,
@@ -36,6 +38,19 @@ function App() {
     };
     setUserState(updatedProfile);
     localStorage.setItem(storageKey, JSON.stringify(updatedProfile));
+  };
+
+  const deleteProficiency = (skillName: string) => {
+    const savedDataRaw = localStorage.getItem(storageKey);
+    const currentStatus: UserStatus = savedDataRaw
+      ? JSON.parse(savedDataRaw)
+      : {};
+
+    const { [skillName]: _, ...updatedSkills } = currentStatus.skills;
+    const updatedState = { ...currentStatus, skills: updatedSkills };
+
+    setUserState(updatedState);
+    localStorage.setItem(storageKey, JSON.stringify(updatedState));
   };
 
   return (
@@ -50,8 +65,13 @@ function App() {
           {Object.entries(userState.skills).map(([skillName, skillLevel]) => (
             <li key={skillName}>
               <strong>{skillName}:</strong> {skillLevel}
-              <button onClick={() => increaseProfiency(skillName, skillLevel)}>
+              <button
+                onClick={() => increaseProficiency(skillName, skillLevel)}
+              >
                 Increase
+              </button>
+              <button onClick={() => deleteProficiency(skillName)}>
+                Delete
               </button>
             </li>
           ))}
