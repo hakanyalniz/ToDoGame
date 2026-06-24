@@ -1,5 +1,5 @@
 import "./App.css";
-import { use, useState } from "react";
+import { useState } from "react";
 
 // temporary types
 type Skills = {
@@ -21,13 +21,16 @@ const defaultStatus: UserStatus = {
 function App() {
   const storageKey = "test_status";
 
+  // State for the user profile, we pull it from local storage, otherwise assign a default one
   const [userState, setUserState] = useState<UserStatus>(() => {
     const savedData = localStorage.getItem(storageKey);
     return savedData ? JSON.parse(savedData) : defaultStatus;
   });
 
+  // State for the input field for skill
   const [inputText, setInputText] = useState("");
 
+  /** Clicking increase button next to the skill increases the local state and the local storage data. */
   const increaseProficiency = (skillName: string, skillLevel: number) => {
     // const savedDataRaw = localStorage.getItem(storageKey);
     // const currentStatus: UserStatus = savedDataRaw
@@ -42,6 +45,7 @@ function App() {
     localStorage.setItem(storageKey, JSON.stringify(updatedProfile));
   };
 
+  /** Clicking the delete button next to the skill will delete the skill, update the local state and local storage */
   const deleteProficiency = (skillName: string) => {
     const { [skillName]: _, ...updatedSkills } = userState.skills;
     const updatedState = { ...userState, skills: updatedSkills };
@@ -50,6 +54,7 @@ function App() {
     localStorage.setItem(storageKey, JSON.stringify(updatedState));
   };
 
+  /** Clicking the add button will update the local state and local storage. */
   const addProficiency = () => {
     const updatedState = {
       ...userState,
@@ -76,7 +81,6 @@ function App() {
           <button onClick={addProficiency}>Add</button>
         </p>
         <ul>
-          {/* Object.entries turns the skills object into an array of [key, value] pairs */}
           {Object.entries(userState.skills).map(([skillName, skillLevel]) => (
             <li key={skillName}>
               <strong>{skillName}:</strong> {skillLevel}
