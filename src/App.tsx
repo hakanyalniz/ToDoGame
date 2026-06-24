@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { use, useState } from "react";
 
 // temporary types
 type Skills = {
@@ -26,29 +26,35 @@ function App() {
     return savedData ? JSON.parse(savedData) : defaultStatus;
   });
 
+  const [inputText, setInputText] = useState("");
+
   const increaseProficiency = (skillName: string, skillLevel: number) => {
-    const savedDataRaw = localStorage.getItem(storageKey);
-    const currentStatus: UserStatus = savedDataRaw
-      ? JSON.parse(savedDataRaw)
-      : {};
+    // const savedDataRaw = localStorage.getItem(storageKey);
+    // const currentStatus: UserStatus = savedDataRaw
+    //   ? JSON.parse(savedDataRaw)
+    //   : {};
 
     const updatedProfile: UserStatus = {
-      ...currentStatus,
-      skills: { ...currentStatus.skills, [skillName]: skillLevel + 1 },
+      ...userState,
+      skills: { ...userState.skills, [skillName]: skillLevel + 1 },
     };
     setUserState(updatedProfile);
     localStorage.setItem(storageKey, JSON.stringify(updatedProfile));
   };
 
   const deleteProficiency = (skillName: string) => {
-    const savedDataRaw = localStorage.getItem(storageKey);
-    const currentStatus: UserStatus = savedDataRaw
-      ? JSON.parse(savedDataRaw)
-      : {};
+    const { [skillName]: _, ...updatedSkills } = userState.skills;
+    const updatedState = { ...userState, skills: updatedSkills };
 
-    const { [skillName]: _, ...updatedSkills } = currentStatus.skills;
-    const updatedState = { ...currentStatus, skills: updatedSkills };
+    setUserState(updatedState);
+    localStorage.setItem(storageKey, JSON.stringify(updatedState));
+  };
 
+  const addProficiency = () => {
+    const updatedState = {
+      ...userState,
+      skills: { ...userState.skills, [inputText]: 0 },
+    };
     setUserState(updatedState);
     localStorage.setItem(storageKey, JSON.stringify(updatedState));
   };
@@ -59,7 +65,16 @@ function App() {
         <p>Status</p>
         <p>{userState.name}</p>
         <p>{userState.level}</p>
-        <p>Skills: </p>
+        <p>
+          Skills:{" "}
+          <input
+            type="text"
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+            placeholder="Type something here..."
+          />
+          <button onClick={addProficiency}>Add</button>
+        </p>
         <ul>
           {/* Object.entries turns the skills object into an array of [key, value] pairs */}
           {Object.entries(userState.skills).map(([skillName, skillLevel]) => (

@@ -4,3 +4,8 @@ button {
   padding: 3px;
   margin-left: 10px;
 }
+
+input {
+  color: black;
+  background-color: white;
+}
