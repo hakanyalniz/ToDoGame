@@ -49,6 +49,7 @@ function Home() {
     localStorage.setItem(storageKey, JSON.stringify(updatedState));
   };
 
+  /** Uses a math formula to determine skill levels given skill experience. Every 10 experience, increased by 10 percent each level, is 1 level. */
   const handleExperienceImplementation = (skillExperience: number) => {
     const argument = (0.1 * skillExperience) / 10 + 1;
     const skillLevel = Math.log(argument) / Math.log(1.1);
@@ -58,40 +59,42 @@ function Home() {
 
   return (
     <>
-      <div>
-        <p>Status</p>
-        <p>{userState.name}</p>
-        <p>{userState.level}</p>
-        <p>
-          Skills:{" "}
-          <input
-            type="text"
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-            placeholder="Type something here..."
-          />
-          <button onClick={addProficiency}>Add</button>
-        </p>
-        <ul>
-          {Object.entries(userState.skills).map(
-            ([skillName, skillExperience]) => (
-              <li key={skillName}>
-                <strong>{skillName}:</strong>{" "}
-                {Math.round(handleExperienceImplementation(skillExperience))}
-                <button
-                  onClick={() =>
-                    increaseProficiency(skillName, skillExperience)
-                  }
-                >
-                  Increase
-                </button>
-                <button onClick={() => deleteProficiency(skillName)}>
-                  Delete
-                </button>
-              </li>
-            ),
-          )}
-        </ul>
+      <div className="game-screen-overlay">
+        <div className="game-status-container">
+          <p>Status</p>
+          <p>{userState.name}</p>
+          <p>{userState.level}</p>
+          <p>
+            Skills:{" "}
+            <input
+              type="text"
+              value={inputText}
+              onChange={(e) => setInputText(e.target.value)}
+              placeholder="Type something here..."
+            />
+            <button onClick={addProficiency}>Add</button>
+          </p>
+          <ul>
+            {Object.entries(userState.skills).map(
+              ([skillName, skillExperience]) => (
+                <li key={skillName}>
+                  <strong>{skillName}:</strong>{" "}
+                  {Math.round(handleExperienceImplementation(skillExperience))}
+                  <button
+                    onClick={() =>
+                      increaseProficiency(skillName, skillExperience)
+                    }
+                  >
+                    Increase
+                  </button>
+                  <button onClick={() => deleteProficiency(skillName)}>
+                    Delete
+                  </button>
+                </li>
+              ),
+            )}
+          </ul>
+        </div>
       </div>
     </>
   );
