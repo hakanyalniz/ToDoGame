@@ -60,19 +60,22 @@ function Home() {
   return (
     <>
       <div className="game-screen-overlay">
-        <div className="game-status-container">
+        <div className="game-status-container vt323-regular">
           <p>Status</p>
           <p>{userState.name}</p>
           <p>{userState.level}</p>
           <p>
             Skills:{" "}
             <input
+              className="jrpg-input"
               type="text"
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               placeholder="Type something here..."
             />
-            <button onClick={addProficiency}>Add</button>
+            <button className="jrpg-button" onClick={addProficiency}>
+              Add
+            </button>
           </p>
           <ul>
             {Object.entries(userState.skills).map(
@@ -81,13 +84,17 @@ function Home() {
                   <strong>{skillName}:</strong>{" "}
                   {Math.round(handleExperienceImplementation(skillExperience))}
                   <button
+                    className="jrpg-button"
                     onClick={() =>
                       increaseProficiency(skillName, skillExperience)
                     }
                   >
                     Increase
                   </button>
-                  <button onClick={() => deleteProficiency(skillName)}>
+                  <button
+                    className="jrpg-button"
+                    onClick={() => deleteProficiency(skillName)}
+                  >
                     Delete
                   </button>
                 </li>

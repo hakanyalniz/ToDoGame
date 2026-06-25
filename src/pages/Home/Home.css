@@ -14,6 +14,11 @@
 
 /* The main status screen container */
 .game-status-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+
+  font-size: 22px;
   width: 450px;
   max-width: 90%;
   min-height: 300px;
@@ -49,4 +54,53 @@
     transform: scale(1);
     opacity: 1;
   }
+}
+
+/* JRPG Input CSS */
+.jrpg-input {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 8px 12px;
+
+  border: 4px solid #ffffff;
+  border-radius: 2px;
+
+  box-shadow: inset 4px 4px 0px rgba(255, 255, 255, 0.1);
+}
+
+/* Placeholder styling */
+.jrpg-input::placeholder {
+  color: #555555;
+}
+
+/* Focus State: When the player clicks into the input field */
+.jrpg-input:focus {
+  border-color: #ffd700;
+}
+
+/* JRPG Button CSS */
+.jrpg-button {
+  background-color: #000047;
+  color: #ffffff;
+  padding: 8px;
+  cursor: pointer;
+
+  border: 4px solid #ffffff;
+  border-radius: 2px;
+
+  box-shadow: 0px 6px 0px #000000;
+
+  transform: translateY(0);
+}
+
+/* Hover State: Highlights the option, imitating the game cursor select */
+.jrpg-button:hover {
+  background-color: #0000a3;
+  border-color: #ffd700;
+}
+
+/* Active State: When the button is physically clicked/pressed */
+.jrpg-button:active {
+  transform: translateY(6px);
+  box-shadow: 0px 0px 0px #000000;
 }
