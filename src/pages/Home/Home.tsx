@@ -21,11 +21,27 @@ function Home() {
   const [inputText, setInputText] = useState("");
 
   /** Clicking increase button next to the skill increases the local state and the local storage data. */
-  const increaseProficiency = (skillName: string, skillLevel: number) => {
-    const updatedProfile: UserStatus = {
-      ...userState,
-      skills: { ...userState.skills, [skillName]: skillLevel + 10 },
+  const increaseProficiency = (skillName: string, skillExperience: number) => {
+    const newSkillExperience = skillExperience + 10;
+
+    const updatedSkills = {
+      ...userState.skills,
+      [skillName]: newSkillExperience,
     };
+
+    const totalUserLevel = Math.round(
+      Object.values(updatedSkills).reduce((sum, value) => {
+        const modifiedValue = Math.round(handleExperienceImplementation(value));
+        return sum + modifiedValue;
+      }, 0),
+    );
+
+    const updatedProfile = {
+      ...userState,
+      level: totalUserLevel,
+      skills: updatedSkills,
+    };
+
     setUserState(updatedProfile);
     localStorage.setItem(storageKey, JSON.stringify(updatedProfile));
   };
@@ -71,7 +87,7 @@ function Home() {
               type="text"
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
-              placeholder="Type something here..."
+              placeholder="Type skill..."
             />
             <button className="jrpg-button" onClick={addProficiency}>
               Add
@@ -81,7 +97,7 @@ function Home() {
             {Object.entries(userState.skills).map(
               ([skillName, skillExperience]) => (
                 <li key={skillName}>
-                  <strong>{skillName}:</strong>{" "}
+                  <strong>{skillName}:</strong> <span>level</span>{" "}
                   {Math.round(handleExperienceImplementation(skillExperience))}
                   <button
                     className="jrpg-button"
