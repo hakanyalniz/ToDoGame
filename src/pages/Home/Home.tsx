@@ -24,7 +24,7 @@ function Home() {
   const increaseProficiency = (skillName: string, skillLevel: number) => {
     const updatedProfile: UserStatus = {
       ...userState,
-      skills: { ...userState.skills, [skillName]: skillLevel + 1 },
+      skills: { ...userState.skills, [skillName]: skillLevel + 10 },
     };
     setUserState(updatedProfile);
     localStorage.setItem(storageKey, JSON.stringify(updatedProfile));
@@ -49,6 +49,13 @@ function Home() {
     localStorage.setItem(storageKey, JSON.stringify(updatedState));
   };
 
+  const handleExperienceImplementation = (skillExperience: number) => {
+    const argument = (0.1 * skillExperience) / 10 + 1;
+    const skillLevel = Math.log(argument) / Math.log(1.1);
+
+    return skillLevel;
+  };
+
   return (
     <>
       <div>
@@ -66,19 +73,24 @@ function Home() {
           <button onClick={addProficiency}>Add</button>
         </p>
         <ul>
-          {Object.entries(userState.skills).map(([skillName, skillLevel]) => (
-            <li key={skillName}>
-              <strong>{skillName}:</strong> {skillLevel}
-              <button
-                onClick={() => increaseProficiency(skillName, skillLevel)}
-              >
-                Increase
-              </button>
-              <button onClick={() => deleteProficiency(skillName)}>
-                Delete
-              </button>
-            </li>
-          ))}
+          {Object.entries(userState.skills).map(
+            ([skillName, skillExperience]) => (
+              <li key={skillName}>
+                <strong>{skillName}:</strong>{" "}
+                {Math.round(handleExperienceImplementation(skillExperience))}
+                <button
+                  onClick={() =>
+                    increaseProficiency(skillName, skillExperience)
+                  }
+                >
+                  Increase
+                </button>
+                <button onClick={() => deleteProficiency(skillName)}>
+                  Delete
+                </button>
+              </li>
+            ),
+          )}
         </ul>
       </div>
     </>
