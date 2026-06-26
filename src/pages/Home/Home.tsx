@@ -1,16 +1,16 @@
 import "./Home.css";
 import { type UserStatus } from "./types";
 import { useState } from "react";
+import UserLogin from "./components/UserLogin";
+import { storageKey } from "../../utility/config";
 
 const defaultStatus: UserStatus = {
-  name: "Test",
+  name: "DEFAULT_NAME",
   level: 0,
   skills: {},
 };
 
 function Home() {
-  const storageKey = "test_status";
-
   // State for the user profile, we pull it from local storage, otherwise assign a default one
   const [userState, setUserState] = useState<UserStatus>(() => {
     const savedData = localStorage.getItem(storageKey);
@@ -76,18 +76,33 @@ function Home() {
     return skillLevel;
   };
 
+  const deleteProfile = () => {
+    const userConfirm = window.confirm("Are you sure you want to delete this?");
+    if (userConfirm) {
+      localStorage.removeItem(storageKey);
+      setUserState(defaultStatus);
+    }
+  };
+
+  // Conditional rendering of login page
+  if (userState.name === "DEFAULT_NAME") {
+    return <UserLogin updateUser={setUserState} />;
+  }
+
   return (
     <>
       <div className="game-screen-overlay">
         <div className="game-status-container vt323-regular">
           <div className="game-top-bar">
             <button className="button-style minus">—</button>
-            <button className="button-style exit">X</button>
+            <button className="button-style exit" onClick={deleteProfile}>
+              X
+            </button>
           </div>
 
           <p>Status</p>
           <p>{userState.name}</p>
-          <p>{userState.level}</p>
+          <p>Level {userState.level}</p>
           <p>
             Skills:{" "}
             <input
