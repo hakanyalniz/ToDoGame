@@ -80,7 +80,10 @@ function Home() {
     <>
       <div className="game-screen-overlay">
         <div className="game-status-container vt323-regular">
-          <div className="game-top-bar">test</div>
+          <div className="game-top-bar">
+            <button className="button-style minus">—</button>
+            <button className="button-style exit">X</button>
+          </div>
 
           <p>Status</p>
           <p>{userState.name}</p>
