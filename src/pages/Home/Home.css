@@ -5,7 +5,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--screen-background-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,12 +23,16 @@
   max-width: 90%;
   min-height: 300px;
 
-  background: linear-gradient(to bottom, #0000a3 0%, #000047 100%);
+  background: linear-gradient(
+    to bottom,
+    var(--royal-blue) 0%,
+    var(--dark-royal-blue) 100%
+  );
 
   padding: 30px;
   box-sizing: border-box;
 
-  border: 6px solid #e29402;
+  border: 6px solid var(--royal-gold);
 
   box-shadow:
     0 0 0 2px #1b0f00,
@@ -38,7 +42,7 @@
     0 0 0 10px #683900,
     0 0 0 12px #804600;
 
-  outline: 3px solid #000000;
+  outline: 3px solid black;
   outline-offset: -6px;
 
   animation: scaleUp 0.3s ease-out forwards;
@@ -58,11 +62,11 @@
 
 /* JRPG Input CSS */
 .jrpg-input {
-  background-color: #000000;
+  background-color: black;
   color: #ffffff;
   padding: 8px 12px;
 
-  border: 4px solid #ffffff;
+  border: 4px solid white;
   border-radius: 2px;
 
   box-shadow: inset 4px 4px 0px rgba(255, 255, 255, 0.1);
@@ -75,32 +79,45 @@
 
 /* Focus State: When the player clicks into the input field */
 .jrpg-input:focus {
-  border-color: #ffd700;
+  border-color: var(--royal-gold);
 }
 
 /* JRPG Button CSS */
 .jrpg-button {
-  background-color: #000047;
-  color: #ffffff;
+  background-color: var(--dark-royal-blue);
+  color: white;
   padding: 8px;
   cursor: pointer;
 
-  border: 4px solid #ffffff;
+  border: 4px solid white;
   border-radius: 2px;
 
-  box-shadow: 0px 6px 0px #000000;
+  box-shadow: 0px 6px 0px black;
 
   transform: translateY(0);
 }
 
 /* Hover State: Highlights the option, imitating the game cursor select */
 .jrpg-button:hover {
-  background-color: #0000a3;
-  border-color: #ffd700;
+  background-color: var(--royal-blue);
+  border-color: var(--royal-gold);
 }
 
 /* Active State: When the button is physically clicked/pressed */
 .jrpg-button:active {
   transform: translateY(6px);
-  box-shadow: 0px 0px 0px #000000;
+  box-shadow: 0px 0px 0px black;
+}
+
+.game-top-bar {
+  background-color: var(--dark-royal-blue);
+  margin-top: -30px;
+  margin-right: -30px;
+  margin-left: -30px;
+
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.2),
+    0 4px 6px rgba(0, 0, 0, 0.1);
+
+  border-bottom: 4px solid black;
 }

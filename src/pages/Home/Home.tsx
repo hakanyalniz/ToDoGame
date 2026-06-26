@@ -23,10 +23,8 @@ function Home() {
   /** Clicking increase button next to the skill increases the local state and the local storage data.
    * It also updates the total user level, which is a sum of all skill experience.*/
   const increaseProficiency = (skillName: string, skillExperience: number) => {
-    // Update the total skill experience of the specific skill
     const newSkillExperience = skillExperience + 10;
 
-    // Update the specific skill experience
     const updatedSkills = {
       ...userState.skills,
       [skillName]: newSkillExperience,
@@ -40,7 +38,6 @@ function Home() {
       }, 0),
     );
 
-    // Get it all together
     const updatedProfile = {
       ...userState,
       level: totalUserLevel,
@@ -83,6 +80,8 @@ function Home() {
     <>
       <div className="game-screen-overlay">
         <div className="game-status-container vt323-regular">
+          <div className="game-top-bar">test</div>
+
           <p>Status</p>
           <p>{userState.name}</p>
           <p>{userState.level}</p>
