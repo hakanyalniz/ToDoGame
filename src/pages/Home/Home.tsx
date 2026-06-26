@@ -23,7 +23,7 @@ function Home() {
   /** Clicking increase button next to the skill increases the local state and the local storage data.
    * It also updates the total user level, which is a sum of all skill experience.*/
   const increaseProficiency = (skillName: string, skillExperience: number) => {
-    const newSkillExperience = skillExperience + 1000;
+    const newSkillExperience = skillExperience + 10;
 
     const updatedSkills = {
       ...userState.skills,
