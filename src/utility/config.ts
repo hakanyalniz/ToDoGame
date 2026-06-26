@@ -1,1 +1,1 @@
-export const storageKey = "test_status";
+export const storageKey = "game_toDo";
