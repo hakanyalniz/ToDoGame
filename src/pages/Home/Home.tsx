@@ -128,7 +128,7 @@ function Home() {
                       increaseProficiency(skillName, skillExperience)
                     }
                   >
-                    Increase
+                    Done
                   </button>
                   <button
                     className="jrpg-button"
