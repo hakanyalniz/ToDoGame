@@ -52,7 +52,20 @@ function Home() {
   /** Clicking the delete button next to the skill will delete the skill, update the local state and local storage */
   const deleteProficiency = (skillName: string) => {
     const { [skillName]: _, ...updatedSkills } = userState.skills;
-    const updatedState = { ...userState, skills: updatedSkills };
+
+    // Recalculate the user general level when a skill is deleted
+    const totalUserLevel = Math.round(
+      Object.values(updatedSkills).reduce((sum, value) => {
+        const modifiedValue = Math.round(handleExperienceImplementation(value));
+        return sum + modifiedValue;
+      }, 0),
+    );
+
+    const updatedState = {
+      ...userState,
+      level: totalUserLevel,
+      skills: updatedSkills,
+    };
 
     setUserState(updatedState);
     localStorage.setItem(storageKey, JSON.stringify(updatedState));
@@ -166,3 +179,4 @@ export default Home;
 // Have a way to do X times per week
 // Make the minimize and maximize buttons which enlarge or make the status window smaller
 // Have a way of having multiple accounts
+// Make the skills, add and so on prettier. Maybe have a separate screen where the user can add or remove skills
