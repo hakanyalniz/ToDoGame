@@ -1,6 +1,6 @@
-import { type UserStatus } from "../types";
+import { type UserStatus } from "../../types";
 import { useState } from "react";
-import { storageKey } from "../../../utility/config";
+import { storageKey } from "../../../../utility/config";
 import "./UserLogin.css";
 
 type UserLoginProps = {

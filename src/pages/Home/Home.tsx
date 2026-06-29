@@ -1,7 +1,7 @@
 import "./Home.css";
 import { type UserStatus } from "./types";
 import { useState } from "react";
-import UserLogin from "./components/UserLogin";
+import UserLogin from "./components/UserLogin/UserLogin";
 import { storageKey } from "../../utility/config";
 
 const defaultStatus: UserStatus = {
