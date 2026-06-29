@@ -71,6 +71,8 @@ button {
 
 /* JRPG Input CSS */
 .jrpg-input {
+  width: clamp(50px, 25vw, 200px);
+
   background-color: black;
   color: #ffffff;
   padding: 8px 12px;
