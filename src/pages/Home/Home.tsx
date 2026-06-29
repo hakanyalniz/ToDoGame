@@ -93,8 +93,29 @@ function Home() {
     <>
       <div className="game-screen-overlay">
         <div className="game-status-container vt323-regular">
+          <dialog id="help-dialog">
+            <h3>Help Menu</h3>
+            <p>
+              Native popups handle accessibility and layering automatically.
+            </p>
+            <button
+              commandfor="help-dialog"
+              command="close"
+              className="jrpg-button"
+            >
+              Close
+            </button>
+          </dialog>
+
           <div className="game-top-bar">
-            <button className="button-style minus">—</button>
+            <button
+              className="button-style default"
+              command="show-modal"
+              commandfor="help-dialog"
+            >
+              ?
+            </button>
+            <button className="button-style default">—</button>
             <button className="button-style exit" onClick={deleteProfile}>
               X
             </button>

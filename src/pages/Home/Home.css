@@ -48,6 +48,10 @@
   animation: scaleUp 0.3s ease-out forwards;
 }
 
+#help-dialog {
+  margin: auto;
+}
+
 /* Entrance animation */
 @keyframes scaleUp {
   from {
@@ -141,8 +145,8 @@ button {
   background-color: red;
 }
 
-.button-style.minus:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+.button-style.default:hover {
+  background-color: var(--royal-light-blue);
 }
 
 .button-style:active {
