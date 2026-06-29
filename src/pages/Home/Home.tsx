@@ -128,7 +128,7 @@ function Home() {
           <p>
             Skills:{" "}
             <input
-              className="jrpg-input"
+              className="jrpg-input skill"
               type="text"
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}

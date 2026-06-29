@@ -71,8 +71,6 @@ button {
 
 /* JRPG Input CSS */
 .jrpg-input {
-  width: clamp(50px, 25vw, 200px);
-
   background-color: black;
   color: #ffffff;
   padding: 8px 12px;
@@ -81,6 +79,10 @@ button {
   border-radius: 2px;
 
   box-shadow: inset 4px 4px 0px rgba(255, 255, 255, 0.1);
+}
+
+.jrpg-input.skill {
+  width: clamp(50px, 25vw, 230px);
 }
 
 /* Placeholder styling */

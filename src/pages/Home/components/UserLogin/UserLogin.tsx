@@ -37,7 +37,7 @@ function UserLogin({ updateUser }: UserLoginProps) {
         Please register{" "}
         <form onSubmit={registerUser} className="register-form">
           <input
-            className="jrpg-input"
+            className="jrpg-input register"
             type="text"
             value={loginName}
             onChange={(e) => setLoginName(e.target.value)}

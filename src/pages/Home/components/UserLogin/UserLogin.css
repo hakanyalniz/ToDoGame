@@ -3,3 +3,11 @@
   flex-direction: column;
   gap: 10px;
 }
+
+.jrpg-button.register {
+  width: clamp(100px, 80vw, 100%);
+}
+
+.jrpg-input.register {
+  width: clamp(50px, 80vw, 100%);
+}
