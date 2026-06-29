@@ -48,8 +48,20 @@
   animation: scaleUp 0.3s ease-out forwards;
 }
 
+/* For the help dialog popup */
 #help-dialog {
   margin: auto;
+  padding: 10px;
+
+  background: linear-gradient(
+    to bottom,
+    var(--royal-blue) 0%,
+    var(--dark-royal-blue) 100%
+  );
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.514);
 }
 
 /* Entrance animation */
