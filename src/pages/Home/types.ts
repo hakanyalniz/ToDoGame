@@ -7,3 +7,8 @@ export type UserStatus = {
   level: number;
   skills: Skills;
 };
+
+export type PopUpTypes = {
+  title: string;
+  helpTextOption: number;
+};

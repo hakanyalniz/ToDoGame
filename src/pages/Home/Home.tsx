@@ -2,6 +2,7 @@ import "./Home.css";
 import { type UserStatus } from "./types";
 import { useState } from "react";
 import UserLogin from "./components/UserLogin/UserLogin";
+import PopUp from "./components/PopUp/PopUp";
 import { storageKey } from "../../utility/config";
 
 const defaultStatus: UserStatus = {
@@ -93,20 +94,7 @@ function Home() {
     <>
       <div className="game-screen-overlay">
         <div className="game-status-container vt323-regular">
-          <dialog id="help-dialog">
-            <h3>Help Menu</h3>
-            <p>
-              Native popups handle accessibility and layering automatically.
-            </p>
-            <button
-              commandfor="help-dialog"
-              command="close"
-              className="jrpg-button"
-            >
-              Close
-            </button>
-          </dialog>
-
+          <PopUp title={"Help Menu"} helpTextOption={1} />
           <div className="game-top-bar">
             <button
               className="button-style default"
@@ -133,7 +121,10 @@ function Home() {
               onChange={(e) => setInputText(e.target.value)}
               placeholder="Type skill..."
             />
-            <button className="jrpg-button" onClick={addProficiency}>
+            <button
+              className="jrpg-button left-small-margin"
+              onClick={addProficiency}
+            >
               Add
             </button>
           </p>
@@ -144,7 +135,7 @@ function Home() {
                   <strong>{skillName}:</strong> <span>level</span>{" "}
                   {Math.round(handleExperienceImplementation(skillExperience))}
                   <button
-                    className="jrpg-button"
+                    className="jrpg-button left-small-margin"
                     onClick={() =>
                       increaseProficiency(skillName, skillExperience)
                     }
@@ -152,7 +143,7 @@ function Home() {
                     Done
                   </button>
                   <button
-                    className="jrpg-button"
+                    className="jrpg-button left-small-margin"
                     onClick={() => deleteProficiency(skillName)}
                   >
                     Delete
