@@ -164,3 +164,5 @@ export default Home;
 // Make experience bar instead of number
 // Have a way to toggle the tasks in or out
 // Have a way to do X times per week
+// Make the minimize and maximize buttons which enlarge or make the status window smaller
+// Have a way of having multiple accounts

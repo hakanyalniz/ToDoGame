@@ -1,12 +1,15 @@
 import "./PopUp.css";
 import { type PopUpTypes } from "../../types";
-import { mainMenuHelp, errorHelp } from "./PopUpText";
+import { mainMenuHelp, loginMenuHelp, errorHelp } from "./PopUpText";
 
 function PopUp({ title, helpTextOption }: PopUpTypes) {
   let helpText = "";
   switch (helpTextOption) {
     case 1:
       helpText = mainMenuHelp;
+      break;
+    case 2:
+      helpText = loginMenuHelp;
       break;
     default:
       helpText = errorHelp;
