@@ -4,6 +4,7 @@ import { useState } from "react";
 import UserLogin from "./components/UserLogin/UserLogin";
 import PopUp from "./components/PopUp/PopUp";
 import { storageKey } from "../../utility/config";
+import { exportLocalStorage } from "../../utility/helpers";
 
 const defaultStatus: UserStatus = {
   name: "DEFAULT_NAME",
@@ -108,7 +109,16 @@ function Home() {
       <div className="game-screen-overlay">
         <div className="game-status-container vt323-regular">
           <PopUp title={"Help Menu"} helpTextOption={1} />
+          <input
+            type="file"
+            id="hiddenSavePicker"
+            style={{ display: "none" }}
+          ></input>
+
           <div className="game-top-bar">
+            <button onClick={exportLocalStorage}>Save</button>
+            <button id="save-button">Load</button>
+
             <button
               className="button-style default"
               command="show-modal"
