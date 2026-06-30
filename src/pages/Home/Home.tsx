@@ -99,6 +99,15 @@ function Home() {
     }
   };
 
+  // Loads the selected file into local storage and the current state
+  const handleImportingLocalStorage = async () => {
+    const exportedLocalStorage = await importLocalStorage();
+
+    if (!exportedLocalStorage) return;
+
+    setUserState(exportedLocalStorage);
+  };
+
   // Conditional rendering of login page
   if (userState.name === "DEFAULT_NAME") {
     return <UserLogin updateUser={setUserState} />;
@@ -117,7 +126,7 @@ function Home() {
 
           <div className="game-top-bar">
             <button onClick={exportLocalStorage}>Save</button>
-            <button onClick={importLocalStorage}>Load</button>
+            <button onClick={handleImportingLocalStorage}>Load</button>
 
             <button
               className="button-style default"

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { storageKey } from "../../../../utility/config";
 import "./UserLogin.css";
 import PopUp from "../PopUp/PopUp";
+import { importLocalStorage } from "../../../../utility/helpers";
 
 type UserLoginProps = {
   updateUser: React.Dispatch<React.SetStateAction<UserStatus>>;
@@ -21,10 +22,26 @@ function UserLogin({ updateUser }: UserLoginProps) {
     updateUser(newUser);
   };
 
+  // Loads the selected file into local storage and the current state
+  const handleImportingLocalStorage = async () => {
+    const exportedLocalStorage = await importLocalStorage();
+
+    if (!exportedLocalStorage) return;
+
+    updateUser(exportedLocalStorage);
+  };
+
   return (
     <div className="game-screen-overlay">
       <div className="game-status-container vt323-regular">
+        <input
+          type="file"
+          id="hiddenSavePicker"
+          style={{ display: "none" }}
+        ></input>
         <div className="game-top-bar">
+          <button onClick={handleImportingLocalStorage}>Load</button>
+
           <button
             className="button-style default"
             command="show-modal"
