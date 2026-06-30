@@ -22,6 +22,35 @@ export function exportLocalStorage() {
   URL.revokeObjectURL(url);
 }
 
-function importLocalStorage(jsonString: string) {
-  console.log(jsonString);
+export function importLocalStorage() {
+  const hiddenSavePicker = document.getElementById("hiddenSavePicker");
+  const reader = new FileReader();
+  let importedLocalStorageFile;
+
+  if (!hiddenSavePicker) {
+    console.error("No local storage data found.");
+    return;
+  }
+
+  hiddenSavePicker.click();
+
+  hiddenSavePicker.addEventListener("change", (event) => {
+    const target = event.target as HTMLInputElement;
+
+    importedLocalStorageFile = target.files?.[0];
+
+    if (!importedLocalStorageFile) {
+      console.error("No local storage data found.");
+      return;
+    }
+
+    reader.onload = (event) => {
+      const fileContent = event.target?.result;
+
+      console.log("Here is your data:", fileContent);
+      localStorage.setItem(storageKey, fileContent);
+    };
+
+    reader.readAsText(importedLocalStorageFile);
+  });
 }
