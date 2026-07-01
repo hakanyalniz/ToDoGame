@@ -99,6 +99,15 @@ function Home() {
     }
   };
 
+  // Saves the local storage state
+  const handleExportingLocalStorage = () => {
+    const userConfirm = window.confirm("Do you want to save your profile?");
+
+    if (userConfirm) {
+      exportLocalStorage();
+    }
+  };
+
   // Loads the selected file into local storage and the current state
   const handleImportingLocalStorage = async () => {
     const exportedLocalStorage = await importLocalStorage();
@@ -125,20 +134,33 @@ function Home() {
           ></input>
 
           <div className="game-top-bar">
-            <button onClick={exportLocalStorage}>Save</button>
-            <button onClick={handleImportingLocalStorage}>Load</button>
+            <div>
+              <button
+                className="jrpg-button"
+                onClick={handleExportingLocalStorage}
+              >
+                Save
+              </button>
+              <button
+                className="jrpg-button"
+                onClick={handleImportingLocalStorage}
+              >
+                Load
+              </button>
+            </div>
 
-            <button
-              className="button-style default"
-              command="show-modal"
-              commandfor="help-dialog"
-            >
-              ?
-            </button>
-            <button className="button-style default">—</button>
-            <button className="button-style exit" onClick={deleteProfile}>
-              X
-            </button>
+            <div>
+              <button
+                className="button-style default"
+                command="show-modal"
+                commandfor="help-dialog"
+              >
+                ?
+              </button>
+              <button className="button-style exit" onClick={deleteProfile}>
+                X
+              </button>
+            </div>
           </div>
 
           <p>Status</p>
