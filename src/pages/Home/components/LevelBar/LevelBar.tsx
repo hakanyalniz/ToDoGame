@@ -74,11 +74,9 @@ function LevelBar({
    * Then calculates the progress to the next level and shows it in percentage mode.
    */
   const handleExperienceBar = () => {
-    const newSkillExperience = skillExperience + 10;
-
     // Get the current precise level and the next level
     const currentSkillLevel = Math.floor(
-      handleExperienceImplementation(newSkillExperience),
+      handleExperienceImplementation(skillExperience),
     );
     const nextLevel = currentSkillLevel + 1;
 
@@ -87,9 +85,12 @@ function LevelBar({
       100 * (Math.pow(1.1, currentSkillLevel) - 1),
     );
     const xpForNextLevel = Math.round(100 * (Math.pow(1.1, nextLevel) - 1));
+    console.log(
+      `xpForCurrentLevel ${xpForCurrentLevel}  xpForNextLevel ${xpForNextLevel}  skillExperience ${skillExperience}`,
+    );
 
     // Calculate progress percentage 770
-    const xpEarnedInCurrentLevel = newSkillExperience - xpForCurrentLevel;
+    const xpEarnedInCurrentLevel = skillExperience - xpForCurrentLevel;
     const xpRequiredForNextLevel = xpForNextLevel - xpForCurrentLevel;
 
     // Get percentage on the level progress
@@ -98,7 +99,6 @@ function LevelBar({
       Math.max(progressFraction * 100, 0),
       100,
     );
-    console.log(progressPercentage);
 
     // Give this percentage value and use it to fill a bar
     return fillExperienceBar(progressPercentage);
