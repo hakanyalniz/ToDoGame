@@ -4,3 +4,19 @@
   align-items: center;
   gap: 2px;
 }
+
+.green-experience-bar {
+  display: flex;
+
+  background: white;
+  padding: 2px;
+  border-radius: 2px;
+}
+
+.single-experience-bar {
+  width: 15px;
+  height: 20px;
+  transition: background-color 0.2s ease;
+
+  border: 2px solid white;
+}

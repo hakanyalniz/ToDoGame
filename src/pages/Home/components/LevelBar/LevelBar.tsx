@@ -32,7 +32,7 @@ function LevelBar({
       skills: updatedSkills,
     };
 
-    handleExperienceBar(newSkillExperience);
+    // handleExperienceBar();
     setUserState(updatedProfile);
     localStorage.setItem(storageKey, JSON.stringify(updatedProfile));
   };
@@ -73,10 +73,8 @@ function LevelBar({
    * Inverses the formula to calculate the current level and next level experience thresholds.
    * Then calculates the progress to the next level and shows it in percentage mode.
    */
-  const handleExperienceBar = (newSkillExperience: number) => {
-    const greenExperienceBar = document.getElementById("green-experience-bar");
-
-    if (!greenExperienceBar) return;
+  const handleExperienceBar = () => {
+    const newSkillExperience = skillExperience + 10;
 
     // Get the current precise level and the next level
     const currentSkillLevel = Math.floor(
@@ -101,13 +99,39 @@ function LevelBar({
       100,
     );
 
-    greenExperienceBar.innerHTML = String(progressPercentage);
+    // Give this percentage value and use it to fill a bar
+    return fillExperienceBar(progressPercentage);
+  };
+
+  const fillExperienceBar = (progressPercentage: number) => {
+    // Get the first digit (e.g., 76 becomes 7. If 100, it becomes 10)
+    const filledSegmentCount = Math.floor(progressPercentage / 10);
+    const totalSegments = 10;
+
+    return (
+      <div className="green-experience-bar">
+        {Array.from({ length: totalSegments }).map((_, index) => {
+          // Since index goes from 0 to 9, if index is less than filledCount, it should be colored
+          const isFilled = index < filledSegmentCount;
+
+          return (
+            <div
+              className="single-experience-bar"
+              key={index}
+              style={{
+                backgroundColor: isFilled ? "#4caf50" : "black", // Green for filled, grey for empty
+              }}
+            />
+          );
+        })}
+      </div>
+    );
   };
 
   return (
     <>
       <li className="small-skill-list" key={skillName}>
-        <strong>{skillName}: </strong> <div id="green-experience-bar"></div>
+        <strong>{skillName}: </strong> {handleExperienceBar()}
         <span>level </span>
         {Math.floor(handleExperienceImplementation(skillExperience))}
         <button
