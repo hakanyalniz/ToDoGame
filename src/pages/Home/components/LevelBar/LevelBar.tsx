@@ -31,6 +31,7 @@ function LevelBar({
       skills: updatedSkills,
     };
 
+    handleExperienceBar(newSkillExperience);
     setUserState(updatedProfile);
     localStorage.setItem(storageKey, JSON.stringify(updatedProfile));
   };
@@ -66,11 +67,48 @@ function LevelBar({
     return skillLevel;
   };
 
+  /**
+   * Gets the new skill experience, the current level, the next level.
+   * Inverses the formula to calculate the current level and next level experience thresholds.
+   * Then calculates the progress to the next level and shows it in percentage mode.
+   */
+  const handleExperienceBar = (newSkillExperience: number) => {
+    const greenExperienceBar = document.getElementById("green-experience-bar");
+
+    if (!greenExperienceBar) return;
+
+    // Get the current precise level and the next level
+    const currentSkillLevel = Math.floor(
+      handleExperienceImplementation(newSkillExperience),
+    );
+    const nextLevel = currentSkillLevel + 1;
+
+    // Use the inverse formula to find the XP thresholds for both levels
+    const xpForCurrentLevel = Math.round(
+      100 * (Math.pow(1.1, currentSkillLevel) - 1),
+    );
+    const xpForNextLevel = Math.round(100 * (Math.pow(1.1, nextLevel) - 1));
+
+    // Calculate progress percentage 770
+    const xpEarnedInCurrentLevel = newSkillExperience - xpForCurrentLevel;
+    const xpRequiredForNextLevel = xpForNextLevel - xpForCurrentLevel;
+
+    // Get percentage on the level progress
+    const progressFraction = xpEarnedInCurrentLevel / xpRequiredForNextLevel;
+    const progressPercentage = Math.min(
+      Math.max(progressFraction * 100, 0),
+      100,
+    );
+
+    greenExperienceBar.innerHTML = String(progressPercentage);
+  };
+
   return (
     <>
       <li key={skillName}>
+        <div id="green-experience-bar"></div>
         <strong>{skillName}:</strong> <span>level</span>{" "}
-        {Math.round(handleExperienceImplementation(skillExperience))}
+        {Math.floor(handleExperienceImplementation(skillExperience))}
         <button
           className="jrpg-button left-small-margin"
           onClick={() => increaseProficiency(skillName, skillExperience)}
