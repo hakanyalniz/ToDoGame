@@ -20,3 +20,23 @@
 
   border: 2px solid white;
 }
+
+.experience {
+  position: relative;
+}
+
+#experience-level {
+  font-size: 26px;
+
+  position: absolute;
+  top: -20px;
+  right: -5px;
+
+  pointer-events: none;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+  color: white;
+}

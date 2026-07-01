@@ -21,7 +21,7 @@ function LevelBar({
     // Get the sum of all skill experience, turn it into level, which is the general user level
     const totalUserLevel = Math.round(
       Object.values(updatedSkills).reduce((sum, value) => {
-        const modifiedValue = Math.round(handleExperienceImplementation(value));
+        const modifiedValue = Math.floor(handleExperienceImplementation(value));
         return sum + modifiedValue;
       }, 0),
     );
@@ -98,6 +98,7 @@ function LevelBar({
       Math.max(progressFraction * 100, 0),
       100,
     );
+    console.log(progressPercentage);
 
     // Give this percentage value and use it to fill a bar
     return fillExperienceBar(progressPercentage);
@@ -131,9 +132,14 @@ function LevelBar({
   return (
     <>
       <li className="small-skill-list" key={skillName}>
-        <strong>{skillName}: </strong> {handleExperienceBar()}
-        <span>level </span>
-        {Math.floor(handleExperienceImplementation(skillExperience))}
+        <strong>{skillName}: </strong>
+        <span className="experience">
+          <span id="experience-bar"> {handleExperienceBar()}</span>
+          <span id="experience-level">
+            level {Math.floor(handleExperienceImplementation(skillExperience))}
+          </span>
+        </span>
+
         <button
           className="jrpg-button left-small-margin"
           onClick={() => increaseProficiency(skillName, skillExperience)}
