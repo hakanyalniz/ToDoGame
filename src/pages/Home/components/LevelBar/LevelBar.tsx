@@ -1,5 +1,6 @@
 import { type LevelBarTypes } from "../../types";
 import { storageKey } from "../../../../utility/config";
+import "./LevelBar.css";
 
 function LevelBar({
   skillName,
@@ -105,9 +106,9 @@ function LevelBar({
 
   return (
     <>
-      <li key={skillName}>
-        <div id="green-experience-bar"></div>
-        <strong>{skillName}:</strong> <span>level</span>{" "}
+      <li className="small-skill-list" key={skillName}>
+        <strong>{skillName}: </strong> <div id="green-experience-bar"></div>
+        <span>level </span>
         {Math.floor(handleExperienceImplementation(skillExperience))}
         <button
           className="jrpg-button left-small-margin"
