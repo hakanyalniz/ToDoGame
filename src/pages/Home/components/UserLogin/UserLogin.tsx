@@ -40,7 +40,9 @@ function UserLogin({ updateUser }: UserLoginProps) {
           style={{ display: "none" }}
         ></input>
         <div className="game-top-bar">
-          <button onClick={handleImportingLocalStorage}>Load</button>
+          <button className="jrpg-button" onClick={handleImportingLocalStorage}>
+            Load
+          </button>
 
           <button
             className="button-style default"

@@ -11,3 +11,11 @@
 .jrpg-input.register {
   width: clamp(50px, 80vw, 100%);
 }
+
+.game-top-bar > .jrpg-button {
+  padding-top: 0;
+  padding-bottom: 0;
+  border-width: 2px;
+
+  margin-left: 3px;
+}
