@@ -96,7 +96,6 @@ function Home() {
           <p>{userState.name}</p>
           <p>Level {userState.level}</p>
           <div>
-            <p>Skills: </p>
             <button className="jrpg-button" onClick={handleSkillPageNavigation}>
               Show Skill Page
             </button>
@@ -124,7 +123,6 @@ export default Home;
 
 // Have a way to toggle the tasks in or out
 // Have a way to do X times per week
-// Make the minimize and maximize buttons which enlarge or make the status window smaller
 // Have a way of having multiple accounts
-// Maybe have a separate screen where the user can add or remove skills
 // Add a way to edit the skill name
+// Work on the help tooltip and update it
