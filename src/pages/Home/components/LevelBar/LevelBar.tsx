@@ -85,9 +85,6 @@ function LevelBar({
       100 * (Math.pow(1.1, currentSkillLevel) - 1),
     );
     const xpForNextLevel = Math.round(100 * (Math.pow(1.1, nextLevel) - 1));
-    console.log(
-      `xpForCurrentLevel ${xpForCurrentLevel}  xpForNextLevel ${xpForNextLevel}  skillExperience ${skillExperience}`,
-    );
 
     // Calculate progress percentage 770
     const xpEarnedInCurrentLevel = skillExperience - xpForCurrentLevel;
@@ -140,18 +137,20 @@ function LevelBar({
           </span>
         </span>
 
-        <button
-          className="jrpg-button left-small-margin"
-          onClick={() => increaseProficiency(skillName, skillExperience)}
-        >
-          Done
-        </button>
-        <button
-          className="jrpg-button left-small-margin"
-          onClick={() => deleteProficiency(skillName)}
-        >
-          Delete
-        </button>
+        <span>
+          <button
+            className="jrpg-button left-small-margin"
+            onClick={() => increaseProficiency(skillName, skillExperience)}
+          >
+            Done
+          </button>
+          <button
+            className="jrpg-button left-small-margin"
+            onClick={() => deleteProficiency(skillName)}
+          >
+            Delete
+          </button>
+        </span>
       </li>
     </>
   );

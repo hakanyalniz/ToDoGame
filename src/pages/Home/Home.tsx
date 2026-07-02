@@ -124,7 +124,7 @@ function Home() {
               Add
             </button>
           </p>
-          <ul>
+          <ul className="skill-grid-container">
             {Object.entries(userState.skills).map(
               ([skillName, skillExperience], key) => (
                 <LevelBar
@@ -145,10 +145,9 @@ function Home() {
 
 export default Home;
 
-// Have a way to export
-// Make experience bar instead of number
 // Have a way to toggle the tasks in or out
 // Have a way to do X times per week
 // Make the minimize and maximize buttons which enlarge or make the status window smaller
 // Have a way of having multiple accounts
 // Make the skills, add and so on prettier. Maybe have a separate screen where the user can add or remove skills
+// Check for empty skill name

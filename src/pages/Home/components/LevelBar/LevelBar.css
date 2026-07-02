@@ -1,8 +1,5 @@
 .small-skill-list {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 2px;
+  display: contents;
 }
 
 .green-experience-bar {
