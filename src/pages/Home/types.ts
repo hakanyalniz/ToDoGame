@@ -26,3 +26,8 @@ export type SkillPageTypes = {
   userState: UserStatus;
   setUserState: Dispatch<SetStateAction<UserStatus>>;
 };
+
+export type UserStateType = {
+  userState: UserStatus;
+  setUserState: Dispatch<SetStateAction<UserStatus>>;
+};

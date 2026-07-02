@@ -1,25 +1,18 @@
 import "./Home.css";
-import { type UserStatus } from "./types";
-import { useState } from "react";
 import UserLogin from "./components/UserLogin/UserLogin";
 import PopUp from "./components/PopUp/PopUp";
-import SkillPage from "./components/SkillPage/SkillPage";
 import LevelBar from "./components/LevelBar/LevelBar";
-import { storageKey } from "../../utility/config";
+import { storageKey, defaultStatus } from "../../utility/config";
 import { exportLocalStorage, importLocalStorage } from "../../utility/helpers";
+import { type UserStateType } from "./types";
 
-const defaultStatus: UserStatus = {
-  name: "DEFAULT_NAME",
-  level: 0,
-  skills: {},
-};
+import { useOutletContext } from "react-router";
+import { useNavigate } from "react-router";
 
 function Home() {
   // State for the user profile, we pull it from local storage, otherwise assign a default one
-  const [userState, setUserState] = useState<UserStatus>(() => {
-    const savedData = localStorage.getItem(storageKey);
-    return savedData ? JSON.parse(savedData) : defaultStatus;
-  });
+  const { userState, setUserState } = useOutletContext<UserStateType>();
+  const navigate = useNavigate();
 
   const deleteProfile = () => {
     const userConfirm = window.confirm(
@@ -47,6 +40,10 @@ function Home() {
     if (!exportedLocalStorage) return;
 
     setUserState(exportedLocalStorage);
+  };
+
+  const handleSkillPageNavigation = () => {
+    navigate("/SkillPage");
   };
 
   // Conditional rendering of login page
@@ -100,7 +97,9 @@ function Home() {
           <p>Level {userState.level}</p>
           <div>
             <p>Skills: </p>
-            <SkillPage userState={userState} setUserState={setUserState} />
+            <button className="jrpg-button" onClick={handleSkillPageNavigation}>
+              Show Skill Page
+            </button>
           </div>
           <ul className="skill-grid-container">
             {Object.entries(userState.skills).map(
