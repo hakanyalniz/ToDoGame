@@ -21,3 +21,8 @@ export type LevelBarTypes = {
   userState: UserStatus;
   setUserState: Dispatch<SetStateAction<UserStatus>>;
 };
+
+export type SkillPageTypes = {
+  userState: UserStatus;
+  setUserState: Dispatch<SetStateAction<UserStatus>>;
+};

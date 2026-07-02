@@ -3,6 +3,7 @@ import { type UserStatus } from "./types";
 import { useState } from "react";
 import UserLogin from "./components/UserLogin/UserLogin";
 import PopUp from "./components/PopUp/PopUp";
+import SkillPage from "./components/SkillPage/SkillPage";
 import LevelBar from "./components/LevelBar/LevelBar";
 import { storageKey } from "../../utility/config";
 import { exportLocalStorage, importLocalStorage } from "../../utility/helpers";
@@ -19,19 +20,6 @@ function Home() {
     const savedData = localStorage.getItem(storageKey);
     return savedData ? JSON.parse(savedData) : defaultStatus;
   });
-
-  // State for the input field for skill
-  const [inputText, setInputText] = useState("");
-
-  /** Clicking the add button will update the local state and local storage. */
-  const addProficiency = () => {
-    const updatedState = {
-      ...userState,
-      skills: { ...userState.skills, [inputText]: 0 },
-    };
-    setUserState(updatedState);
-    localStorage.setItem(storageKey, JSON.stringify(updatedState));
-  };
 
   const deleteProfile = () => {
     const userConfirm = window.confirm(
@@ -110,22 +98,10 @@ function Home() {
           <p>Status</p>
           <p>{userState.name}</p>
           <p>Level {userState.level}</p>
-          <p>
-            Skills:{" "}
-            <input
-              className="jrpg-input skill"
-              type="text"
-              value={inputText}
-              onChange={(e) => setInputText(e.target.value)}
-              placeholder="Type skill..."
-            />
-            <button
-              className="jrpg-button left-small-margin"
-              onClick={addProficiency}
-            >
-              Add
-            </button>
-          </p>
+          <div>
+            <p>Skills: </p>
+            <SkillPage userState={userState} setUserState={setUserState} />
+          </div>
           <ul className="skill-grid-container">
             {Object.entries(userState.skills).map(
               ([skillName, skillExperience], key) => (

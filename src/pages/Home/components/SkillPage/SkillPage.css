@@ -1,0 +1,9 @@
+.skill-grid-container {
+  display: grid;
+  grid-template-columns: max-content max-content 1fr;
+  gap: 10px 20px;
+
+  padding: 0;
+  margin: 0;
+  align-items: center;
+}
