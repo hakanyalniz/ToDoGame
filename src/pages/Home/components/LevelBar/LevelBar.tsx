@@ -1,6 +1,7 @@
 import { type LevelBarTypes } from "../../types";
 import { storageKey } from "../../../../utility/config";
 import "./LevelBar.css";
+import { useLocation } from "react-router";
 
 function LevelBar({
   skillName,
@@ -8,6 +9,8 @@ function LevelBar({
   userState,
   setUserState,
 }: LevelBarTypes) {
+  const location = useLocation();
+
   /** Clicking increase button next to the skill increases the local state and the local storage data.
    * It also updates the total user level, which is a sum of all skill experience.*/
   const increaseProficiency = (skillName: string, skillExperience: number) => {
@@ -144,12 +147,14 @@ function LevelBar({
           >
             Done
           </button>
-          <button
-            className="jrpg-button left-small-margin"
-            onClick={() => deleteProficiency(skillName)}
-          >
-            Delete
-          </button>
+          {location.pathname === "/SkillPage" && (
+            <button
+              className="jrpg-button left-small-margin"
+              onClick={() => deleteProficiency(skillName)}
+            >
+              Delete
+            </button>
+          )}
         </span>
       </li>
     </>
