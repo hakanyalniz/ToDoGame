@@ -34,7 +34,9 @@ function Home() {
   };
 
   const deleteProfile = () => {
-    const userConfirm = window.confirm("Are you sure you want to delete this?");
+    const userConfirm = window.confirm(
+      "Are you sure you want to log out (please save before doing this)?",
+    );
     if (userConfirm) {
       localStorage.removeItem(storageKey);
       setUserState(defaultStatus);
@@ -149,5 +151,5 @@ export default Home;
 // Have a way to do X times per week
 // Make the minimize and maximize buttons which enlarge or make the status window smaller
 // Have a way of having multiple accounts
-// Make the skills, add and so on prettier. Maybe have a separate screen where the user can add or remove skills
-// Check for empty skill name
+// Maybe have a separate screen where the user can add or remove skills
+// Add a way to edit the skill name

@@ -129,7 +129,7 @@ function LevelBar({
   return (
     <>
       <li className="small-skill-list" key={skillName}>
-        <strong>{skillName}: </strong>
+        <strong>{skillName} </strong>
         <span className="experience">
           <span id="experience-bar"> {handleExperienceBar()}</span>
           <span id="experience-level">

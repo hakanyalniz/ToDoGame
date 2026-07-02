@@ -5,7 +5,7 @@
 .green-experience-bar {
   display: flex;
 
-  background: white;
+  background: rgb(19, 19, 19);
   padding: 2px;
   border-radius: 2px;
 }
@@ -13,9 +13,8 @@
 .single-experience-bar {
   width: 15px;
   height: 20px;
-  transition: background-color 0.2s ease;
 
-  border: 2px solid white;
+  /* border: 1px solid rgb(255, 255, 255); */
 }
 
 .experience {
