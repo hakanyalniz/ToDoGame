@@ -11,7 +11,8 @@ import { useNavigate } from "react-router";
 
 function Home() {
   // State for the user profile, we pull it from local storage, otherwise assign a default one
-  const { userState, setUserState } = useOutletContext<LayoutContextTypes>();
+  const { userState, setUserState, skillSchedule } =
+    useOutletContext<LayoutContextTypes>();
   const navigate = useNavigate();
 
   const deleteProfile = () => {
@@ -101,16 +102,23 @@ function Home() {
             </button>
           </div>
           <ul className="skill-grid-container">
+            {/* Here we map through all of the skills inside user. But we only show the skills that are marked in the schedule */}
             {Object.entries(userState.skills).map(
-              ([skillName, skillExperience], key) => (
-                <LevelBar
-                  skillName={skillName}
-                  skillExperience={skillExperience}
-                  userState={userState}
-                  setUserState={setUserState}
-                  key={key}
-                />
-              ),
+              ([skillName, skillExperience], key) => {
+                {
+                  return (
+                    skillSchedule[skillName] === 1 && (
+                      <LevelBar
+                        skillName={skillName}
+                        skillExperience={skillExperience}
+                        userState={userState}
+                        setUserState={setUserState}
+                        key={key}
+                      />
+                    )
+                  );
+                }
+              },
             )}
           </ul>
         </div>
@@ -121,10 +129,7 @@ function Home() {
 
 export default Home;
 
-// Have a way to toggle the tasks in or out
 // Have a way to do X times per week
 // Have a way of having multiple accounts
 // Add a way to edit the skill name
-// Have a way to show/hide skills on Home page from Skill page
-// Have an array, which contains 1 or 0, look it up when rendering it in Home and render according to it
 // Work on the help tooltip and update it
