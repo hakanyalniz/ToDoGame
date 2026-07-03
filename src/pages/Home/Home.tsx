@@ -4,14 +4,14 @@ import PopUp from "./components/PopUp/PopUp";
 import LevelBar from "./components/LevelBar/LevelBar";
 import { storageKey, defaultStatus } from "../../utility/config";
 import { exportLocalStorage, importLocalStorage } from "../../utility/helpers";
-import { type UserStateType } from "./types";
+import { type LayoutContextTypes } from "../../utility/types";
 
 import { useOutletContext } from "react-router";
 import { useNavigate } from "react-router";
 
 function Home() {
   // State for the user profile, we pull it from local storage, otherwise assign a default one
-  const { userState, setUserState } = useOutletContext<UserStateType>();
+  const { userState, setUserState } = useOutletContext<LayoutContextTypes>();
   const navigate = useNavigate();
 
   const deleteProfile = () => {
@@ -125,4 +125,6 @@ export default Home;
 // Have a way to do X times per week
 // Have a way of having multiple accounts
 // Add a way to edit the skill name
+// Have a way to show/hide skills on Home page from Skill page
+// Have an array, which contains 1 or 0, look it up when rendering it in Home and render according to it
 // Work on the help tooltip and update it

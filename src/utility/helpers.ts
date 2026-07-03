@@ -1,5 +1,5 @@
 import { storageKey } from "./config";
-import { type UserStatus } from "../pages/Home/types";
+import { type UserStatus } from "./types";
 
 /**
  * Gets the local storage and saves it as a JSON file.

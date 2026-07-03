@@ -1,4 +1,4 @@
-import { type UserStatus } from "../pages/Home/types";
+import { type UserStatus } from "./types";
 
 export const storageKey = "game_toDo";
 

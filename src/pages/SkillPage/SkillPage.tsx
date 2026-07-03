@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { storageKey } from "../../utility/config";
 import { useOutletContext } from "react-router";
-import { type UserStateType } from "../Home/types";
+import { type LayoutContextTypes } from "../../utility/types";
 import "./SkillPage.css";
 import { useNavigate } from "react-router";
 import LevelBar from "../Home/components/LevelBar/LevelBar";
 
 function SkillPage() {
-  const { userState, setUserState } = useOutletContext<UserStateType>();
+  const { userState, setUserState } = useOutletContext<LayoutContextTypes>();
   const navigate = useNavigate();
 
   // State for the input field for skill

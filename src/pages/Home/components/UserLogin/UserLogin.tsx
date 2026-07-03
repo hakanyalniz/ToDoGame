@@ -1,4 +1,4 @@
-import { type UserStatus } from "../../types";
+import { type UserStatus } from "../../../../utility/types";
 import { useState } from "react";
 import { storageKey } from "../../../../utility/config";
 import "./UserLogin.css";

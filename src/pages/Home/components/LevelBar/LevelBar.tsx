@@ -1,4 +1,4 @@
-import { type LevelBarTypes } from "../../types";
+import { type LevelBarTypes } from "../../../../utility/types";
 import { storageKey } from "../../../../utility/config";
 import "./LevelBar.css";
 import { useLocation } from "react-router";
@@ -129,6 +129,8 @@ function LevelBar({
     );
   };
 
+  const handleSkillSchedule = () => {};
+
   return (
     <>
       <li className="small-skill-list" key={skillName}>
@@ -141,12 +143,24 @@ function LevelBar({
         </span>
 
         <span>
-          <button
-            className="jrpg-button left-small-margin"
-            onClick={() => increaseProficiency(skillName, skillExperience)}
-          >
-            Done
-          </button>
+          {location.pathname != "/SkillPage" && (
+            <button
+              className="jrpg-button left-small-margin"
+              onClick={() => increaseProficiency(skillName, skillExperience)}
+            >
+              Done
+            </button>
+          )}
+
+          {location.pathname === "/SkillPage" && (
+            <button
+              className="jrpg-button left-small-margin"
+              onClick={handleSkillSchedule}
+            >
+              Schedule
+            </button>
+          )}
+
           {location.pathname === "/SkillPage" && (
             <button
               className="jrpg-button left-small-margin"

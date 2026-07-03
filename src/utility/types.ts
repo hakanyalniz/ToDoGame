@@ -27,7 +27,13 @@ export type SkillPageTypes = {
   setUserState: Dispatch<SetStateAction<UserStatus>>;
 };
 
-export type UserStateType = {
+export type SkillScheduleTypes = {
+  [key: string]: number;
+};
+
+export type LayoutContextTypes = {
   userState: UserStatus;
   setUserState: Dispatch<SetStateAction<UserStatus>>;
+  skillSchedule: SkillScheduleTypes;
+  setSkillSchedule: Dispatch<SetStateAction<SkillScheduleTypes>>;
 };
