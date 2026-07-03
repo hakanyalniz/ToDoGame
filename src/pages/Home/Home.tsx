@@ -11,8 +11,7 @@ import { useNavigate } from "react-router";
 
 function Home() {
   // State for the user profile, we pull it from local storage, otherwise assign a default one
-  const { userState, setUserState, skillSchedule } =
-    useOutletContext<LayoutContextTypes>();
+  const { userState, setUserState } = useOutletContext<LayoutContextTypes>();
   const navigate = useNavigate();
 
   const deleteProfile = () => {
@@ -106,8 +105,10 @@ function Home() {
             {Object.entries(userState.skills).map(
               ([skillName, skillExperience], key) => {
                 {
+                  console.log(skillName, skillExperience, userState);
+
                   return (
-                    skillSchedule[skillName] === 1 && (
+                    userState.schedule[skillName] === 1 && (
                       <LevelBar
                         skillName={skillName}
                         skillExperience={skillExperience}

@@ -2,7 +2,7 @@ import { createBrowserRouter, Outlet } from "react-router";
 import Home from "./pages/Home/Home";
 import SkillPage from "./pages/SkillPage/SkillPage";
 import { useState } from "react";
-import { type UserStatus, type SkillScheduleTypes } from "./utility/types";
+import { type UserStatus } from "./utility/types";
 import { storageKey, defaultStatus } from "./utility/config";
 
 function StateWrapper() {
@@ -10,13 +10,8 @@ function StateWrapper() {
     const savedData = localStorage.getItem(storageKey);
     return savedData ? JSON.parse(savedData) : defaultStatus;
   });
-  const [skillSchedule, setSkillSchedule] = useState<SkillScheduleTypes>({});
 
-  return (
-    <Outlet
-      context={{ userState, setUserState, skillSchedule, setSkillSchedule }}
-    />
-  );
+  return <Outlet context={{ userState, setUserState }} />;
 }
 
 export const router = createBrowserRouter([

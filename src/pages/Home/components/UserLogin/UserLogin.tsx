@@ -17,6 +17,7 @@ function UserLogin({ updateUser }: UserLoginProps) {
       name: loginName,
       level: 0,
       skills: {},
+      schedule: {},
     };
     localStorage.setItem(storageKey, JSON.stringify(newUser));
     updateUser(newUser);

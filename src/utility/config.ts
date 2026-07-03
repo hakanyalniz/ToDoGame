@@ -6,4 +6,5 @@ export const defaultStatus: UserStatus = {
   name: "DEFAULT_NAME",
   level: 0,
   skills: {},
+  schedule: {},
 };

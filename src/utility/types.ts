@@ -4,10 +4,15 @@ export type Skills = {
   [key: string]: number;
 };
 
+export type SkillSchedule = {
+  [key: string]: number;
+};
+
 export type UserStatus = {
   name: string;
   level: number;
   skills: Skills;
+  schedule: SkillSchedule;
 };
 
 export type PopUpTypes = {
@@ -27,13 +32,7 @@ export type SkillPageTypes = {
   setUserState: Dispatch<SetStateAction<UserStatus>>;
 };
 
-export type SkillScheduleTypes = {
-  [key: string]: number;
-};
-
 export type LayoutContextTypes = {
   userState: UserStatus;
   setUserState: Dispatch<SetStateAction<UserStatus>>;
-  skillSchedule: SkillScheduleTypes;
-  setSkillSchedule: Dispatch<SetStateAction<SkillScheduleTypes>>;
 };

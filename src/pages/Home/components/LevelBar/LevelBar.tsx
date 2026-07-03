@@ -1,8 +1,7 @@
 import { type LevelBarTypes } from "../../../../utility/types";
 import { storageKey } from "../../../../utility/config";
 import "./LevelBar.css";
-import { useLocation, useOutletContext } from "react-router";
-import { type LayoutContextTypes } from "../../../../utility/types";
+import { useLocation } from "react-router";
 
 function LevelBar({
   skillName,
@@ -10,8 +9,6 @@ function LevelBar({
   userState,
   setUserState,
 }: LevelBarTypes) {
-  const { setSkillSchedule } = useOutletContext<LayoutContextTypes>();
-
   const location = useLocation();
 
   /** Clicking increase button next to the skill increases the local state and the local storage data.
@@ -135,10 +132,16 @@ function LevelBar({
   // Flip the number on the skillname, either scheduling it on or off
   // The button for this is only visible in SkillPage
   const handleSkillSchedule = (skillName: string) => {
-    setSkillSchedule((prevSchedule) => ({
-      ...prevSchedule,
-      [skillName]: prevSchedule[skillName] === 1 ? 0 : 1,
-    }));
+    const updatedState = {
+      ...userState,
+      schedule: {
+        ...userState.schedule,
+        [skillName]: userState.schedule[skillName] === 1 ? 0 : 1,
+      },
+    };
+
+    setUserState(updatedState);
+    localStorage.setItem(storageKey, JSON.stringify(updatedState));
   };
 
   return (
