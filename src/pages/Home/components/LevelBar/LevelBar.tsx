@@ -42,7 +42,9 @@ function LevelBar({
 
   /** Clicking the delete button next to the skill will delete the skill, update the local state and local storage */
   const deleteProficiency = (skillName: string) => {
+    // The given skillName to be deleted is separated from updatedSkills by deconstruction
     const { [skillName]: _, ...updatedSkills } = userState.skills;
+    const { [skillName]: __, ...updatedSchedule } = userState.schedule;
 
     // Recalculate the user general level when a skill is deleted
     const totalUserLevel = Math.round(
@@ -56,6 +58,7 @@ function LevelBar({
       ...userState,
       level: totalUserLevel,
       skills: updatedSkills,
+      schedule: updatedSchedule,
     };
 
     setUserState(updatedState);
