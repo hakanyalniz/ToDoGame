@@ -1,9 +1,9 @@
-import { type UserStatus } from "../../../../utility/types";
 import { useState } from "react";
-import { storageKey } from "../../../../utility/config";
 import "./UserLogin.css";
 import PopUp from "../PopUp/PopUp";
-import { importLocalStorage } from "../../../../utility/helpers";
+import { type UserStatus } from "../../../utility/types";
+import { storageKey } from "../../../utility/config";
+import { importLocalStorage } from "../../../utility/helpers";
 
 type UserLoginProps = {
   updateUser: React.Dispatch<React.SetStateAction<UserStatus>>;

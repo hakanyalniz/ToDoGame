@@ -4,7 +4,7 @@ import { useOutletContext } from "react-router";
 import { type LayoutContextTypes } from "../../utility/types";
 import "./SkillPage.css";
 import { useNavigate } from "react-router";
-import LevelBar from "../Home/components/LevelBar/LevelBar";
+import LevelBar from "../components/LevelBar/LevelBar";
 
 function SkillPage() {
   const { userState, setUserState } = useOutletContext<LayoutContextTypes>();

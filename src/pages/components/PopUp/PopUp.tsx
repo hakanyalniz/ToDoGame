@@ -1,5 +1,5 @@
 import "./PopUp.css";
-import { type PopUpTypes } from "../../../../utility/types";
+import { type PopUpTypes } from "../../../utility/types";
 import { mainMenuHelp, loginMenuHelp, errorHelp } from "./PopUpText";
 
 function PopUp({ title, helpTextOption }: PopUpTypes) {

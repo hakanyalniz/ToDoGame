@@ -1,7 +1,7 @@
 import "./Home.css";
-import UserLogin from "./components/UserLogin/UserLogin";
-import PopUp from "./components/PopUp/PopUp";
-import LevelBar from "./components/LevelBar/LevelBar";
+import UserLogin from "../components/UserLogin/UserLogin";
+import PopUp from "../components/PopUp/PopUp";
+import LevelBar from "../components/LevelBar/LevelBar";
 import { storageKey, defaultStatus } from "../../utility/config";
 import { exportLocalStorage, importLocalStorage } from "../../utility/helpers";
 import { type LayoutContextTypes } from "../../utility/types";
@@ -131,5 +131,4 @@ export default Home;
 // Have a way to do X times per week
 // Have a way of having multiple accounts
 // Add a way to edit the skill name
-// Work on the help tooltip and update it
 // Have a way to know if something is scheduled or not, maybe by a green/red light
