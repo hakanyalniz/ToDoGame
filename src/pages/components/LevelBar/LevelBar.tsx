@@ -150,6 +150,22 @@ function LevelBar({
   return (
     <>
       <li className="small-skill-list" key={skillName}>
+        {location.pathname === "/SkillPage" ? (
+          <div
+            className="skill-schedule-status"
+            style={{
+              backgroundColor:
+                userState.schedule[skillName] === 1 ? "green" : "red",
+            }}
+          ></div>
+        ) : (
+          <div
+            className="skill-schedule-status"
+            style={{
+              backgroundColor: "transparent",
+            }}
+          ></div>
+        )}
         <strong>{skillName} </strong>
         <span className="experience">
           <span id="experience-bar"> {handleExperienceBar()}</span>

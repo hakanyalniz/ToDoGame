@@ -1,9 +1,16 @@
 .skill-grid-container {
   display: grid;
-  grid-template-columns: max-content max-content 1fr;
+  grid-template-columns: max-content max-content max-content 1fr;
   gap: 10px 20px;
 
   padding: 0;
   margin: 0;
   align-items: center;
+}
+
+.skill-schedule-status {
+  background-color: red;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
 }
