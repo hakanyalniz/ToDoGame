@@ -105,10 +105,8 @@ function Home() {
             {Object.entries(userState.skills).map(
               ([skillName, skillExperience], key) => {
                 {
-                  console.log(skillName, skillExperience, userState);
-
                   return (
-                    userState.schedule[skillName] === 1 && (
+                    userState.schedule?.[skillName] === 1 && (
                       <LevelBar
                         skillName={skillName}
                         skillExperience={skillExperience}
@@ -134,3 +132,4 @@ export default Home;
 // Have a way of having multiple accounts
 // Add a way to edit the skill name
 // Work on the help tooltip and update it
+// Have a way to know if something is scheduled or not, maybe by a green/red light
