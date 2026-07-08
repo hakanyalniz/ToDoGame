@@ -1,7 +1,8 @@
-import { type LevelBarTypes } from "../../../utility/types";
+import { type LevelBarTypes, type UserStatus } from "../../../utility/types";
 import { storageKey } from "../../../utility/config";
 import "./LevelBar.css";
 import { useLocation } from "react-router";
+import { useState, type ChangeEvent } from "react";
 
 function LevelBar({
   skillName,
@@ -10,6 +11,9 @@ function LevelBar({
   setUserState,
   className = "",
 }: LevelBarTypes) {
+  // Is editing for editing the skill name
+  const [isEditing, setIsEditing] = useState(false);
+
   const location = useLocation();
 
   /** Clicking increase button next to the skill increases the local state and the local storage data.
@@ -148,9 +152,46 @@ function LevelBar({
     localStorage.setItem(storageKey, JSON.stringify(updatedState));
   };
 
-  // Change the skill name after clicking it
-  const handleSkillNameChange = () => {
-    console.log("clicked");
+  // Change the skill edit state after clicking it, do nothing on pages other than SkillPage
+  const handleEditChangeByClick = () => {
+    if (location.pathname !== "/SkillPage") {
+      return;
+    }
+    isEditing ? setIsEditing(false) : setIsEditing(true);
+  };
+
+  // Saves the changes to skill name when enter is pressed in input field
+  const handleKeyDown = (e: { key: string }) => {
+    if (e.key === "Enter") {
+      setIsEditing(false);
+    }
+  };
+
+  // Change the userState state
+  // While changing state, keep the previous userState and the previous userState of skills
+  // Only change the name of the skill we want
+  const handleSkillNameChange = (
+    e: ChangeEvent<HTMLInputElement, HTMLInputElement>,
+  ) => {
+    // Destructure the old key out from the skills, and collect the rest of the properties
+    // This leaves us with a skill object that is missing the skillName
+    const { [skillName]: skillExperienceToMove, ...restOfSkills } =
+      userState.skills;
+
+    // Also update the schedule name to match the new skill name
+    const { [skillName]: skillScheduleToMove, ...restOfSchedule } =
+      userState.schedule;
+
+    // Return a new object with the rest of the properties and the new key
+    // When returning, we also do not forget to return the rest of the untouched userState object
+    const updatedState = {
+      ...userState,
+      schedule: { ...restOfSchedule, [e.target.value]: skillScheduleToMove },
+      skills: { ...restOfSkills, [e.target.value]: skillExperienceToMove },
+    };
+
+    setUserState(updatedState);
+    localStorage.setItem(storageKey, JSON.stringify(updatedState));
   };
 
   return (
@@ -172,8 +213,18 @@ function LevelBar({
             }}
           ></div>
         )}
-        <strong className={className} onClick={handleSkillNameChange}>
-          {skillName}{" "}
+        <strong className={className} onClick={() => handleEditChangeByClick()}>
+          {isEditing ? (
+            <input
+              type="text"
+              value={skillName}
+              onChange={(e) => handleSkillNameChange(e)}
+              onKeyDown={handleKeyDown}
+              autoFocus
+            />
+          ) : (
+            <span>{skillName} </span>
+          )}
         </strong>
         <span className="experience">
           <span id="experience-bar"> {handleExperienceBar()}</span>
