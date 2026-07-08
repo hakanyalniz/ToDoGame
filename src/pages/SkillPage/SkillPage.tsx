@@ -60,6 +60,7 @@ function SkillPage() {
                 userState={userState}
                 setUserState={setUserState}
                 key={key}
+                className={"skill-name"}
               />
             ),
           )}

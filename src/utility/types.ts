@@ -25,6 +25,7 @@ export type LevelBarTypes = {
   skillExperience: number;
   userState: UserStatus;
   setUserState: Dispatch<SetStateAction<UserStatus>>;
+  className?: string;
 };
 
 export type SkillPageTypes = {

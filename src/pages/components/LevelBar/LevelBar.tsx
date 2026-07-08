@@ -8,6 +8,7 @@ function LevelBar({
   skillExperience,
   userState,
   setUserState,
+  className = "",
 }: LevelBarTypes) {
   const location = useLocation();
 
@@ -147,6 +148,11 @@ function LevelBar({
     localStorage.setItem(storageKey, JSON.stringify(updatedState));
   };
 
+  // Change the skill name after clicking it
+  const handleSkillNameChange = () => {
+    console.log("clicked");
+  };
+
   return (
     <>
       <li className="small-skill-list" key={skillName}>
@@ -166,7 +172,9 @@ function LevelBar({
             }}
           ></div>
         )}
-        <strong>{skillName} </strong>
+        <strong className={className} onClick={handleSkillNameChange}>
+          {skillName}{" "}
+        </strong>
         <span className="experience">
           <span id="experience-bar"> {handleExperienceBar()}</span>
           <span id="experience-level">
