@@ -36,3 +36,7 @@
     1px 1px 0 #000;
   color: white;
 }
+
+.skill-name-change-input {
+  field-sizing: content;
+}

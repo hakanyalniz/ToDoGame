@@ -216,6 +216,7 @@ function LevelBar({
         <strong className={className} onClick={() => handleEditChangeByClick()}>
           {isEditing ? (
             <input
+              className="skill-name-change-input"
               type="text"
               value={skillName}
               onChange={(e) => handleSkillNameChange(e)}
