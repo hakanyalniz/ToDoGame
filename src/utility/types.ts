@@ -37,3 +37,10 @@ export type LayoutContextTypes = {
   userState: UserStatus;
   setUserState: Dispatch<SetStateAction<UserStatus>>;
 };
+
+export const defaultStatus: UserStatus = {
+  name: "DEFAULT_NAME",
+  level: 0,
+  skills: {},
+  schedule: {},
+};

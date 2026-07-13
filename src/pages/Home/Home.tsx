@@ -2,9 +2,9 @@ import "./Home.css";
 import UserLogin from "../components/UserLogin/UserLogin";
 import PopUp from "../components/PopUp/PopUp";
 import LevelBar from "../components/LevelBar/LevelBar";
-import { storageKey, defaultStatus } from "../../utility/config";
+import { storageKey } from "../../utility/config";
 import { exportLocalStorage, importLocalStorage } from "../../utility/helpers";
-import { type LayoutContextTypes } from "../../utility/types";
+import { type LayoutContextTypes, defaultStatus } from "../../utility/types";
 
 import { useOutletContext } from "react-router";
 import { useNavigate } from "react-router";

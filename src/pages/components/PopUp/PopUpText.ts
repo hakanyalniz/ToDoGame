@@ -10,6 +10,8 @@ On the left of the game bar is the SAVE and LOAD buttons. Clicking Save will sav
 Below it are the name of the user, their general total level, a button that takes you to the Skill Page and the list of skills belonging to the user.
 The overall level of the user is calculated by adding all the total levels of their skills.
 The Skill Page allows the user to ADD a skill, DELETE a skill or SCHEDULE it. Scheduled skills appear on the main user profile, which you can return by clicking the RETURN button.
+You can also click on the skill name on Skill Page to change it.
+
 
 When the user completes a task, they can click DONE, which will give the user Experience. Enough experience will allow the skill to level up.
 It becomes harder for the skill to level up the higher it is.
