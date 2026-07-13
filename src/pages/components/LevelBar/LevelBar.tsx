@@ -1,4 +1,4 @@
-import { type LevelBarTypes, type UserStatus } from "../../../utility/types";
+import { type LevelBarTypes } from "../../../utility/types";
 import { storageKey } from "../../../utility/config";
 import "./LevelBar.css";
 import { useLocation } from "react-router";

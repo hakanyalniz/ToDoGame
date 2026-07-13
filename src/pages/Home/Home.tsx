@@ -127,7 +127,3 @@ function Home() {
 }
 
 export default Home;
-
-// Have a way to do X times per week
-// Have a way of having multiple accounts
-// Add a way to edit the skill name
