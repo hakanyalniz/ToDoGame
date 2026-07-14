@@ -84,15 +84,21 @@ LevelBar.tsx component itself contains the logic for increasing skill proficienc
 
 The last thing worth mentioning again is the userState and the local storage user data, which is a copy of that userState. This object looks like so:
 
+```
 {
 "name": "Default",
 "level": 1,
 "skills": {
-"test2": 70
-},
+    "test2": 70
+  },
 "schedule": {
-"test2": 1
+    "test2": 1
+  }
 }
-}
+```
 
 The name and level is obvious, skills contains a list of skills and their experience and the schedule contains the same skill and a boolean which decides to either show the skill on home status page or not.
+
+Overall, the application mainly works by manipulating the internal React state and external browser local storage. The game aspect of the application is achieved by combining to do list features with leveling up. The application's overall look and use also mirrors a JRPG, which helps make it work.
+
+The application is semi finished but it still lacks some features you would expect from more advanced to do list applications. Those might be worked on at a later time.
